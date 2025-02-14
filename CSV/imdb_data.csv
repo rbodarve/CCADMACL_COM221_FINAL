@@ -1,0 +1,101 @@
+imdb_id,title,rating,rating_count,content_rating,date_published,genres
+tt0047708,Alfred Hitchcock Presents,8.5,19836,TV-14,1955-10-02,"['Crime', 'Drama', 'Mystery']"
+tt0043169,The Adventures of Kit Carson,6.8,141,,1951-08-11,['Western']
+tt0047704,Adventures of the Falcon,7.1,44,,1954-06-24,['Adventure']
+tt0048838,The Adventures of Dr. Fu Manchu,6.2,131,,1956-09-03,"['Crime', 'Mystery', 'Thriller']"
+tt0042094,The Colgate Comedy Hour,7.7,607,,1950-09-10,"['Comedy', 'Romance']"
+tt0043233,Chesterfield Sound Off Time,0.0,0,,1951-10-14,"['Comedy', 'Music']"
+tt0044250,China Smith,7.4,38,,,['Adventure']
+tt11126994,Arcane,9.0,376922,16+,2021-11-07,"['Animation', 'Action', 'Adventure']"
+tt0041005,Believe It or Not,6.4,43,,1949-03-01,"['Drama', 'History']"
+tt0050006,Colt .45,7.1,175,,1957-10-18,['Western']
+tt0045411,The Man Behind the Badge,7.0,76,,1953-10-11,"['Crime', 'Drama']"
+tt0048841,The Adventures of Sir Lancelot,7.0,191,,1956-09-15,"['Adventure', 'Family']"
+tt0045378,City Detective,6.7,47,,,['Drama']
+tt0048863,The Gale Storm Show: Oh! Susanna,7.8,241,,1956-09-29,['Comedy']
+tt0048868,"Hey, Jeannie!",7.7,62,,1956-09-08,['Comedy']
+tt0417299,Avatar: The Last Airbender,9.3,397788,7+,2018-03-31,"['Animation', 'Action', 'Adventure']"
+tt0044284,Omnibus,8.2,226,,1952-11-09,"['Drama', 'History', 'Music']"
+tt0042111,The George Burns and Gracie Allen Show,8.6,1584,,1950-10-12,['Comedy']
+tt0046648,Studio 57,7.2,251,,1954-09-21,"['Drama', 'Family']"
+tt0046580,The Best of Broadway,7.0,55,,1954-09-15,"['Comedy', 'Drama', 'Musical']"
+tt0040021,Actor&apos;s Studio,7.0,95,,1948-09-26,['Drama']
+tt0042119,The Ken Murray Show,7.2,36,,1950-01-07,"['Comedy', 'Music']"
+tt0044272,The Jackie Gleason Show,8.4,536,TV-G,1952-09-20,['Comedy']
+tt0046587,Climax!,6.5,278,Unrated,1954-10-07,['Drama']
+tt0046585,Captain Midnight,7.6,175,TV-G,1954-09-04,['Sci-Fi']
+tt0047726,Crusader,7.6,47,,1955-10-07,['Drama']
+tt0047750,The Life and Legend of Wyatt Earp,7.6,1200,TV-PG,1955-09-06,['Western']
+tt0050015,The Errol Flynn Theatre,7.2,44,,,"['Drama', 'Comedy', 'Mystery']"
+tt0049991,26 Men,7.3,140,,1957-10-15,['Western']
+tt0044230,The Adventures of Ozzie and Harriet,7.4,1700,TV-G,1952-10-03,"['Comedy', 'Drama', 'Family']"
+tt0046576,The Adventures of Rin Tin Tin,7.0,892,,1954-10-15,"['Family', 'Western']"
+tt0047755,The Martha Raye Show,7.0,23,,1954-01-23,['Comedy']
+tt0047725,Crunch and Des,8.5,17,,,['Comedy']
+tt0047730,The Eddie Cantor Comedy Theater,7.6,45,,1955-01-23,['Comedy']
+tt0047736,Gunsmoke,8.1,9274,TV-PG,1955-09-10,['Western']
+tt0046588,Colonel March of Scotland Yard,7.1,344,,1955-10-01,"['Crime', 'Drama', 'Mystery']"
+tt0041002,Arthur Godfrey and His Friends,6.7,44,,1949-01-12,['Music']
+tt0048916,Zane Grey Theatre,7.5,629,TV-PG,1956-10-05,['Western']
+tt0046643,Shower of Stars,7.4,87,,1954-09-30,"['Adventure', 'Drama', 'Family']"
+tt0047731,Ford Star Jubilee,7.1,93,,1955-09-24,"['Comedy', 'Drama', 'Music']"
+tt0044262,The Ernie Kovacs Show,8.2,128,,1952-12-30,"['Comedy', 'Family']"
+tt0048872,I Spy,7.4,35,,1955-09-26,['Thriller']
+tt2098220,Hunter x Hunter,9.0,156147,R-13,2018-10-31,"['Animation', 'Action', 'Adventure']"
+tt0795176,Planet Earth,9.4,226055,TV-PG,2006-02-27,"['Documentary', 'Family']"
+tt0048878,The Jonathan Winters Show,8.7,22,,1956-10-02,[]
+tt0041021,The Ed Wynn Show,6.8,68,,1949-10-06,"['Comedy', 'Music']"
+tt0046607,"Honestly, Celeste!",0.0,0,,1954-10-10,['Comedy']
+tt0045396,The George Jessel Show,0.0,0,,1953-09-13,"['Music', 'Comedy']"
+tt0047701,"The $64,000 Question",6.5,81,,1955-06-07,"['Family', 'Game-Show']"
+tt0048881,Life with the Lyons,7.2,20,,1955-06-29,['Comedy']
+tt0047735,The Great Gildersleeve,7.1,73,,1955-09-20,['Comedy']
+tt0050020,The George Sanders Mystery Theater,8.9,31,,1957-06-22,['Mystery']
+tt0050023,Harbor Command,7.5,64,,1957-10-11,['Action']
+tt0046637,Producers&apos; Showcase,7.1,192,,1954-10-18,"['Drama', 'Musical', 'Comedy']"
+tt0040049,The Philco Television Playhouse,7.4,140,,1948-10-03,['Drama']
+tt0050026,Hawkeye and the Last of the Mohicans,7.3,284,Approved,1957-04-03,"['Adventure', 'Drama', 'Western']"
+tt0047748,Kings Row,7.8,39,,1955-09-13,['Drama']
+tt0045414,Meet Mr. McNutley,7.2,62,,1953-09-17,['Comedy']
+tt0046600,Father Knows Best,7.4,2766,TV-G,1954-10-03,"['Comedy', 'Family']"
+tt0047768,Screen Directors Playhouse,7.1,197,,1955-10-05,['Drama']
+tt0045415,The Motorola Television Hour,6.7,45,,1953-11-03,['Drama']
+tt0046612,"Janet Dean, Registered Nurse",7.6,24,,1954-03-23,['Drama']
+tt0042142,Inside Detective,7.6,81,,1950-01-14,"['Action', 'Drama', 'Crime']"
+tt0141842,The Sopranos,9.2,511836,PG-13,1999-01-10,"['Crime', 'Drama']"
+tt0046594,The Donald O&apos;Connor Show,7.7,42,,1954-10-09,"['Comedy', 'Music']"
+tt0042109,The Garry Moore Show,7.5,26,,1950-06-26,['Comedy']
+tt0046590,Crown Theatre with Gloria Swanson,3.0,60,,,['Drama']
+tt0047749,The Dodge Dancing Party,6.9,541,TV-G,1955-06-06,"['Family', 'Music']"
+tt0046584,Caesar&apos;s Hour,7.9,205,,1954-09-27,['Comedy']
+tt3032476,Better Call Saul,9.0,710266,R-16,2017-10-04,"['Crime', 'Drama']"
+tt0047728,Dixon of Dock Green,6.8,363,,1955-07-09,"['Crime', 'Drama']"
+tt0048859,Dr. Hudson&apos;s Secret Journal,7.4,30,,,['Drama']
+tt0047718,Captain Kangaroo,8.0,1634,TV-G,1955-10-03,['Family']
+tt0044254,Cowboy G-Men,6.6,81,,1952-09-13,['Western']
+tt0047751,The Lone Wolf,7.6,133,,1954-04-09,['Adventure']
+tt0044229,The Abbott and Costello Show,8.1,1406,TV-G,1957-09-14,"['Comedy', 'Family', 'Mystery']"
+tt0050032,Leave It to Beaver,7.6,9801,TV-G,1957-04-23,"['Comedy', 'Family']"
+tt0046617,Lassie,6.5,3998,TV-G,1954-09-12,"['Adventure', 'Drama', 'Family']"
+tt0046623,Medic,8.1,194,,1954-09-13,['Drama']
+tt0046592,December Bride,7.9,279,,1954-10-04,['Comedy']
+tt0042100,Dick Tracy,6.7,163,,1950-09-11,"['Crime', 'Drama']"
+tt0044231,Adventures of Superman,7.7,4664,TV-G,1952-09-19,"['Action', 'Adventure', 'Crime']"
+tt0049999,Blondie,6.8,144,,1957-01-04,"['Comedy', 'Family']"
+tt0048853,The Charles Farrell Show,7.7,23,,1956-07-02,['Comedy']
+tt0047738,The Star and the Story,6.9,70,,1955-01-08,['Drama']
+tt0044264,Gang Busters,6.8,89,,1952-03-20,"['Crime', 'Drama']"
+tt0043173,The Amazing Mr. Malone,0.0,0,,1951-09-24,"['Crime', 'Drama']"
+tt0306414,The Wire,9.3,397507,PG-13,2002-06-02,"['Crime', 'Drama', 'Thriller']"
+tt0046618,The Lineup,7.6,129,,1954-10-01,['Drama']
+tt0050004,Club Oasis,0.0,0,,1957-09-28,"['Comedy', 'Music']"
+tt0041016,Celebrity Time,7.2,15,,1948-11-20,"['Family', 'Game-Show']"
+tt0042074,Armstrong Circle Theatre,7.6,129,,1950-06-06,['Drama']
+tt0050037,Maverick,8.0,3822,TV-14,1957-09-22,['Western']
+tt0047756,Matinee Theater,6.7,147,,1955-10-31,"['Drama', 'Horror', 'Mystery']"
+tt0047733,Frontier,7.4,67,,1955-09-25,['Western']
+tt0043209,The Jerry Colonna Show,0.0,0,,1951-05-28,['Comedy']
+tt2861424,Rick and Morty,9.1,637558,SPG,2017-10-04,"['Animation', 'Adventure', 'Comedy']"
+tt0044243,Broadway Television Theatre,6.7,40,,1952-04-14,"['Comedy', 'Drama']"
+tt0050012,The Dinah Shore Show,6.9,72,,1951-11-27,"['Comedy', 'Music']"
+tt0047724,Crossroads,7.4,100,,1955-10-07,['Drama']
