@@ -3,7 +3,7 @@
 [[ -z $SHA ]] && SHA=${1}
 MSG=$(git log -1 --pretty="%B" "${SHA}")
 
-(( LIMIT=1 ))
+(( LIMIT=4000 ))
 (( COUNT=0 ))
 for FILE in $(git ls-files --others --deleted --modified); do
   git add "${FILE}"
