@@ -6,7 +6,12 @@ class ServiceController(Controller):
 	the prediction of the movie's rating based on the movie's poster. This class will
 	interact with the `PosterRatePredictor` class to predict the movie's rating.
 	"""
-	pass
+
+	def predict(self):
+		"""
+		Predicts the movie's rating based on the movie's poster.
+		"""
+		print("Predicting the movie's rating...")
 
 # Used for testing the `ServiceController` class
 if __name__ == "__main__":
