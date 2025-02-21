@@ -17,6 +17,10 @@ class View(ttk.Frame):
 	behavior of the view, such as creating the widgets and arranging them.
 	"""
 
+	#######################
+	# PROTECTED VARIABLES #
+	#######################
+
 	_widgets: Dict[str, tk.Widget] = {}
 	"""
 	A dictionary that holds all the widgets in the view. The key is the name
@@ -166,7 +170,7 @@ class View(ttk.Frame):
 			raise Exception(f"Widget with name '{name}' does not exist.")
 
 		strat = self._widgetStrategy.get(name)
-		if strat and strat["static"]:
+		if strat and "static" in strat and strat["static"]:
 				raise Exception(f"Widget with name '{name}' is a static widget and cannot be accessed.")
 
 		return self._widgets.get(name)

@@ -1,13 +1,12 @@
 import os
 import sys
-import traceback
 from typing import Tuple, List, Dict, Callable
 
 import tkinter as tk
 
-from Controllers import *
-
-import CustomComponents
+import AppInfo
+from Controllers import EventHandlerControllerClass, getEventHandlerController
+from Views import MainViewClass as MainView
 
 class App(tk.Tk):
 	"""
@@ -21,43 +20,11 @@ class App(tk.Tk):
 	with the UI.
 	"""
 
-	###################
-	# CLASS CONSTANTS #
-	###################
-
-	NAME: str = "Poster Analysis"
-	"""
-	Defines the name of the application.
-	"""
-	
-	VERSION: str = "1.0.0"
-	"""
-	Defines the current version of the application.
-	
-	:type: str
-	"""
-
-	RESOURCE_PATH: str = "assets"
-	"""
-	Defines the path to the application's resources/assets folder
-	that contains the images, icons, and other resources needed.
-	"""
-
 	#######################
 	# PROTECTED VARIABLES #
 	#######################
 
-	_serviceController: ServiceController = getServiceController()
-	"""
-	Holds the instance of the `ServiceController` class which handles
-	the application's service logic. This controller is responsible for
-	bridging the gap between the UI and the application's logic.
-
-	Only a single instance of this controller is allowed to exist since its
-	design pattern is a singleton.
-	"""
-
-	_eventHandlerController: EventHandlerController = getEventHandlerController()
+	_eventHandlerController: EventHandlerControllerClass = getEventHandlerController()
 	"""
 	Holds the instance of the `EventHandlerController` class which handles
 	the UI's event processes such as button clicks, text changes, etc.
@@ -65,7 +32,7 @@ class App(tk.Tk):
 	Only a single instance of this controller is allowed to exist since its
 	design pattern is a singleton.
 	"""
-	
+
 	__widgets: Dict[str, tk.Widget] = {}
 	"""
 	A dictionary that holds all the widgets in the view. The key is the name
@@ -87,7 +54,7 @@ class App(tk.Tk):
 	strategy dictionary, with a `bool` value. If not defined, the widget is considered
 	dynamic. If the widget is considered static, the `getWidget` method will raise
 	an exception when trying to access it. This also meant that the widget cannot be
- 	removed.
+	removed.
 
 	By default, it is an empty dictionary.
 	"""
@@ -117,7 +84,7 @@ class App(tk.Tk):
 	# PRIVATE VARIABLES #
 	#####################
 
-	__appDimensions: Tuple[int, int] = (800, 600)
+	__appDimensions: Tuple[int, int] = (600, 800)
 	"""
 	Defines the dimensions of the application window.
 	"""	
@@ -158,8 +125,14 @@ class App(tk.Tk):
 		"""
 		Sets up the application's configuration.
 		"""
-		self.title(self.NAME)
+		self.title(AppInfo.NAME)
 		self.iconbitmap(f"{self.resourcePath(self.__appIcon)}")
+
+		# Recalculate the dimensions of the application
+		self.__appDimensions = (
+			int(self.winfo_screenheight() * 0.75),
+			int(self.winfo_screenheight() * 0.75)
+		)
 
 		# Centers the window
 		appWidth = self.__appDimensions[0]
@@ -178,76 +151,10 @@ class App(tk.Tk):
 		them in the application's UI.
 		"""
 
-		# Scrollable Frame
+		# Frame
 		self.addWidget(
 			"mainFrame",
-			tk.Frame(
-				self,
-				borderwidth = 2, 
-				relief = tk.SUNKEN
-			),
-			{
-				"strat": "pack",
-				"args": {
-					"fill": tk.BOTH,
-					"expand": True
-				}
-			}
-		)
-  
-		# > Title Label
-		self.addWidget(
-			"title",
-			tk.Label(
-				self.getWidget("mainFrame"),
-				text = self.NAME,
-				font = ("Arial", 24, "bold"),
-				justify = tk.CENTER
-			),
-			{
-				"strat": "pack",
-				"args": {
-					"fill": tk.X,
-					"expand": True
-				}
-			}
-		)
-  
-		# > Button Group
-		self.addWidget(
-			"buttonGroup",
-			tk.Frame(
-				self.getWidget("mainFrame")
-			),
-			{
-				"strat": "pack",
-				"args": {
-					"fill": tk.X,
-					"expand": True
-				}
-			}
-		)
-  
-		# > > Select Image Button
-		self.addWidget(
-			"selectImageButton",
-			tk.Button(
-				self.getWidget("buttonGroup"),
-				text = "Select Image",
-				command = lambda: setattr(self, "file", self._serviceController.showImage(self.getWidget("imagePreview"), self._serviceController.selectImage()))
-			)
-		)
-  
-		# > Image Preview
-		self.addWidget(
-			"imagePreview",
-			tk.Label(
-				self.getWidget("mainFrame"),
-				text = "No image selected",
-				font = ("Arial", 12, "italic"),
-				border = 2,
-				relief = 'solid'
-			),
+			MainView(self),
 			{
 				"strat": "pack",
 				"args": {

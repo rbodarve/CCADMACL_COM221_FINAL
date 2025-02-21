@@ -16,7 +16,7 @@ __all__ = [basename(f)[:-3] for f in modules if isfile(f) and basename(f)[:-3] n
 for module in __all__:
 	clss = getattr(import_module(f"Controllers.{module}"), module, None)
 	if not clss: raise RuntimeError(f"Class '{module}' does not exist in module '{module}'.")
-	setattr(__import__(__name__), module, clss)
+	setattr(__import__(__name__), f"{module}Class", clss)
 
 	method = getattr(clss, "getInstance", None)
 	if not method: raise RuntimeError(f"Class '{module}' does not have a 'getInstance' method.")
