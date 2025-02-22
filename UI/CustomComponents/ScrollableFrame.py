@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 
 class ScrollableFrame:
 	"""
@@ -21,9 +22,9 @@ class ScrollableFrame:
 		width = kwargs.pop('width', None)
 		height = kwargs.pop('height', None)
 		bg = kwargs.pop('bg', kwargs.pop('background', None))
-		self.outer = tk.Frame(master, **kwargs)
+		self.outer = ttk.Frame(master, **kwargs)
 
-		self.vsb = tk.Scrollbar(self.outer, orient=tk.VERTICAL)
+		self.vsb = ttk.Scrollbar(self.outer, orient=tk.VERTICAL)
 		self.vsb.pack(fill=tk.Y, side=tk.RIGHT)
 		self.canvas = tk.Canvas(self.outer, highlightthickness=0, width=width, height=height, bg=bg)
 		self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
@@ -35,12 +36,12 @@ class ScrollableFrame:
 		self.canvas.bind("<Leave>", self._unbind_mouse)
 		self.vsb['command'] = self.canvas.yview
 
-		self.inner = tk.Frame(self.canvas, bg=bg)
+		self.inner = ttk.Frame(self.canvas, bg=bg)
 		# pack the inner Frame into the Canvas with the topleft corner 4 pixels offset
 		self.canvas.create_window(4, 4, window=self.inner, anchor='nw')
 		self.inner.bind("<Configure>", self._on_frame_configure)
 
-		self.outer_attr = set(dir(tk.Widget))
+		self.outer_attr = set(dir(ttk.Widget))
 
 	def __getattr__(self, item):
 		if item in self.outer_attr:
@@ -90,10 +91,10 @@ if __name__ == "__main__":
 	frame.pack(fill=tk.BOTH, expand=True) # fill window
 
 	for i in range(30):
-		label = tk.Label(frame, text="This is a label "+str(i))
+		label = ttk.Label(frame, text="This is a label "+str(i))
 		label.grid(column=1, row=i, sticky=tk.W)
 
-		text = tk.Entry(frame, textvariable="text")
+		text = ttk.Entry(frame, textvariable="text")
 		text.grid(column=2, row=i, sticky=tk.W)
 
 	root.mainloop()

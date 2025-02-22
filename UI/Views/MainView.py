@@ -2,6 +2,7 @@ import os
 import sys
 
 import tkinter as tk
+from tkinter import ttk
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
@@ -44,6 +45,9 @@ class MainView(View):
 	### CONSTRUCTOR ###
 	###################
 	def __init__(self, root: tk.Tk, *args, **kwargs) -> None:
+		# Assertion Tests
+		assert isinstance(root, tk.Tk), "The root must be a `tk.Tk` object."
+
 		super().__init__(root, *args, **kwargs)
 
 		self.createWidgets()
@@ -59,11 +63,11 @@ class MainView(View):
 		# Title Label
 		self.addWidget(
 			"title",
-			tk.Label(
+			ttk.Label(
 				self,
 				text = AppInfo.NAME,
 				font = ("Helvetica", 24),
-				justify = tk.CENTER
+				anchor = tk.CENTER
 			),
 			{
 				"strat": "pack",
@@ -78,16 +82,17 @@ class MainView(View):
 		# Image Preview
 		self.addWidget(
 			"imagePreview",
-			tk.Label(
+			ttk.Label(
 				self,
+				text = "No image selected",
 				relief = tk.GROOVE,
-				borderwidth = 3
+				borderwidth = 3,
+				anchor = tk.CENTER
 			),
 			{
 				"strat": "pack",
 				"args": {
 					"padx": 50,
-					"pady": 25,
 					"side": tk.TOP,
 					"fill": tk.BOTH,
 					"expand": True,
@@ -95,10 +100,27 @@ class MainView(View):
 			}
 		)
 
+		# Image Label
+		self.addWidget(
+			"imageLabel",
+			ttk.Label(
+				self,
+				font = ("Helvetica", 12),
+				anchor = tk.CENTER
+			),
+			{
+				"strat": "pack",
+				"args": {
+					"padx": 5,
+					"side": tk.TOP
+				}
+			}
+		)
+
 		# Button Group
 		self.addWidget(
 			"buttonGroup",
-			tk.Frame(self),
+			ttk.Frame(self),
 			{
 				"strat": "pack",
 				"args": {
@@ -111,10 +133,10 @@ class MainView(View):
 		# > Select Image Button
 		self.addWidget(
 			"selectImgBtn",
-			tk.Button(
+			ttk.Button(
 				self.getWidget("buttonGroup"),
 				text = "Select Image",
-				command = lambda: self._eventHandlerController.selectImage(self.getWidget("imagePreview"))
+				command = lambda: self.getWidget("imageLabel").configure(text = self._eventHandlerController.selectImage(self.getWidget("imagePreview")).split("/")[-1])
 			),
 			{
 				"strat": "pack",
@@ -128,7 +150,7 @@ class MainView(View):
 		# > Predict Button
 		self.addWidget(
 			"predictBtn",
-			tk.Button(
+			ttk.Button(
 				self.getWidget("buttonGroup"),
 				text = "Predict",
 				command = self._serviceController.predict

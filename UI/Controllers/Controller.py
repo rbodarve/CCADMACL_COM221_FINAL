@@ -15,7 +15,7 @@ class Controller:
 	instance of this class.
 	"""
 
-	__instance = None
+	__instance: "Controller" = None
 	"""
 	This variable will hold the only instance of the `Controller` class that will be
 	created throughout the application's lifecycle.

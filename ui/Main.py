@@ -1,11 +1,12 @@
-import os
 import sys
 from typing import Tuple, List, Dict, Callable
 
 import tkinter as tk
+from tkinter import ttk
 
 import AppInfo
 from Controllers import EventHandlerControllerClass, getEventHandlerController
+from Themes import Dark
 from Views import MainViewClass as MainView
 
 class App(tk.Tk):
@@ -32,6 +33,10 @@ class App(tk.Tk):
 	Only a single instance of this controller is allowed to exist since its
 	design pattern is a singleton.
 	"""
+
+	#########################
+	### PRIVATE VARIABLES ###
+	#########################
 
 	__widgets: Dict[str, tk.Widget] = {}
 	"""
@@ -80,10 +85,6 @@ class App(tk.Tk):
 	configures the `wraplength` of the widget based on the width of the widget.
 	"""
 
-	#####################
-	# PRIVATE VARIABLES #
-	#####################
-
 	__appDimensions: Tuple[int, int] = (600, 800)
 	"""
 	Defines the dimensions of the application window.
@@ -94,13 +95,6 @@ class App(tk.Tk):
 	Defines the application's icon path.
 	"""
 
-	__file: str = None
-	"""
-	Holds the selected file by the user. By default, it is an empty list.
- 
-	:type: str
-	"""
-
 	###################
 	### CONSTRUCTOR ###
 	###################
@@ -108,30 +102,46 @@ class App(tk.Tk):
 	def __init__(self):
 		super().__init__()
 
-		# Sets up some configurations
-		self.__setup()
-
 		# Sets up the UI
 		self.__createWidgets()
 
 		# Configures the widgets
 		self.__configureWidgets()
 
+		# Register custom themes
+		self.__registerThemes()
+
+		# Sets up some configurations
+		self.__setup()
+
 	#######################
 	### SETUP FUNCTIONS ###
 	#######################
+
+	def __registerThemes(self) -> None:
+		"""
+		Registers the custom themes for the application.
+
+		Currently, the application only supports the dark mode theme.
+		"""
+		Dark.registerDarkMode(ttk.Style(self))
 
 	def __setup(self) -> None:
 		"""
 		Sets up the application's configuration.
 		"""
 		self.title(AppInfo.NAME)
-		self.iconbitmap(f"{self.resourcePath(self.__appIcon)}")
+		self.iconbitmap(f"{AppInfo.resourcePath(self.__appIcon)}")
+
+		# Sets the application's theme
+		ttk.Style(self).theme_use("dark" if AppInfo.isDarkMode() else "default")
 
 		# Recalculate the dimensions of the application
 		self.__appDimensions = (
 			int(self.winfo_screenheight() * 0.75),
-			int(self.winfo_screenheight() * 0.75)
+			# 29 is the missing height of the image preview widget
+			# so that the image preview will be a square shape.
+			int(self.winfo_screenheight() * 0.75) + 29
 		)
 
 		# Centers the window
@@ -144,6 +154,7 @@ class App(tk.Tk):
 
 		self.geometry(f"{appWidth}x{appHeight}+{x}+{y}")
 		self.resizable(False, False)
+		self.update()
 
 	def __createWidgets(self) -> None:
 		"""
@@ -192,26 +203,6 @@ class App(tk.Tk):
 			if bindings:
 				for bind in bindings:
 					widget.bind(bind["event"], bind["handler"])
-
-	########################
-	### HELPER FUNCTIONS ###
-	########################
-
-	@staticmethod
-	def resourcePath(target: str) -> str:
-		"""
-		Returns the absolute path of the resource file after the provided
-		`target` file has been appended to the base path.
-
-		:param target: The target resource file.
-		:type target: str
-
-		:returns: The absolute path of the resource file.
-		:rtype: str
-  		"""
-
-		base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-		return os.path.join(base_path, target)
 
 	###########################
 	### GETTERS AND SETTERS ###

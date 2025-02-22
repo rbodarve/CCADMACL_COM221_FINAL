@@ -21,7 +21,7 @@ class View(ttk.Frame):
 	# PROTECTED VARIABLES #
 	#######################
 
-	_widgets: Dict[str, tk.Widget] = {}
+	_widgets: Dict[str, ttk.Widget | tk.Widget] = {}
 	"""
 	A dictionary that holds all the widgets in the view. The key is the name
 	of the widget and the value is the widget itself.
@@ -29,7 +29,7 @@ class View(ttk.Frame):
 	By default, it is an empty dictionary.
 	"""
 
-	_widgetStrategy: Dict[str, str|dict] = {}
+	_widgetStrategy: Dict[str, str | dict] = {}
 	"""
 	A dictionary that holds the strategy on how each widget will be placed in
 	the view. When a widget from `widgets` is not added to this dictionary, it
@@ -47,7 +47,7 @@ class View(ttk.Frame):
 	By default, it is an empty dictionary.
 	"""
 
-	_widgetBindings: Dict[str, List[Dict[str, str|Callable]]] = {}
+	_widgetBindings: Dict[str, List[Dict[str, str | Callable]]] = {}
 	"""
 	A dictionary that holds the bindings for each widget in the view. The key is
 	the name of the widget and the value is a list of dictionaries that contain
@@ -56,42 +56,56 @@ class View(ttk.Frame):
 	An example entry of the dictionary would be:
 
 	```python
-	self._widgetBindings["wrappingLabel"] = (
+	self.addWidget(
+		"wrappingLabel",
+		ttk.Label(self),
 		{
-			"event": "<Configure>",
-			"handler": lambda e: e.widget.config(wraplength = e.width - 10)
-		}
+			"strat": "pack",
+			"args": {
+				"side": tk.TOP
+			}
+		},
+		[
+			{
+				"event": "<Configure>",
+				"handler": lambda e: e.widget.config(wraplength = e.width - 10)
+			}
+		]
 	)
 	```
 
 	This entry binds the `<Configure>` event to the `wrappingLabel` widget and
 	configures the `wraplength` of the widget based on the width of the widget.
+	Particularly, this section of the code from above:
+
+	```
+	[
+		{
+			"event": "<Configure>",
+			"handler": lambda e: e.widget.config(wraplength = e.width - 10)
+		}
+	]
+	```
+
+	Take note the square brackets `[]` that wrap the dictionary. This is because
+	the `addWidget` method expects a list of dictionaries for the bindings, allowing
+	multiple bindings to be added to a single widget.
 	"""
 
 	###################
 	### CONSTRUCTOR ###
 	###################
-	def __init__(self, root: tk.Tk|tk.Widget, fillSpace: bool = True, *args, **kwargs) -> None:
+	def __init__(self, root: tk.Tk | ttk.Widget | tk.Widget, *args, **kwargs) -> None:
 		"""
 		Initializes the View class. It takes in the parent widget where the
 		view will be placed.
 		
 		:param root: The parent widget where the view will be placed.
-		:type root: tk.Tk | tk.Widget
-
-		:param fillSpace: A flag that indicates whether the view should fill the space of the parent widget. Optional.
-		:type fillSpace: bool
+		:type root: tk.Tk | ttk.Widget | tk.Widget
 		"""
+		assert isinstance(root, (tk.Tk, ttk.Widget, tk.Widget)), f"Expected root to be of type tk.Tk, ttk.Widget, or tk.Widget, but got {type(root)}"
+
 		super().__init__(root, *args, **kwargs)
-  
-		if fillSpace:
-			self.bind(
-				"<Configure>",
-				lambda e: e.widget.config(
-					width = e.widget.winfo_toplevel().winfo_width(),
-					height = e.widget.winfo_toplevel().winfo_height()
-				)
-			)
 
 	#######################
 	### SETUP FUNCTIONS ###
@@ -122,16 +136,50 @@ class View(ttk.Frame):
 			else:
 				widget.pack(pady = 10)
 
+			# If the widget has bindings, add them
+			if self._widgetBindings.keys().__contains__(key):
+				bindings = self._widgetBindings[key]
+				print(f"Adding bindings for {key}")
+
+				for binding in bindings:
+					widget.bind(binding["event"], binding["handler"])
+
+
 	######################
 	### HELPER METHODS ###
 	######################
 
 	# Widgets
-	def addWidget(self, name: str, widget: tk.Widget, strategy: Dict[str, str|dict] = None, bindings: List[Dict[str, str|Callable]] = None) -> "View":
+	def addWidget(self, name: str, widget: ttk.Widget | tk.Widget, strategy: Dict[str, str|dict] = None, bindings: List[Dict[str, str|Callable]] = None) -> "View":
 		"""
 		Adds a widget to the view. It takes in the widget to add, the name of
 		the widget, and an optional strategy on how the widget will be placed
 		in the view.
+
+		An example snippet of adding a widget to the view would be:
+
+		```
+		self.addWidget(
+			"wrappingLabel",
+			tk.Label(self),
+			{
+				"strat": "pack",
+				"args": {
+					"side": tk.TOP
+				}
+			},
+			[
+				{
+					"event": "<Configure>",
+					"handler": lambda e: e.widget.config(wraplength = e.width - 10)
+				}
+			]
+		```
+
+		This snippet adds a `tk.Label` widget to the view with the name `wrappingLabel`.
+		It uses the `pack` strategy to place the widget at the top of the view. It also
+		binds the `<Configure>` event to the widget and configures the `wraplength` of the
+		widget based on the width of the widget.
 		
 		:param name: The name of the widget.
 		:type name: str
@@ -148,9 +196,18 @@ class View(ttk.Frame):
 		:return: This instance of the `View` class.
 		:rtype: View
 		"""
+		# Assertion tests
+		assert isinstance(name, str), f"Expected name to be of type str, but got {type(name)}"
+		assert isinstance(widget, (ttk.Widget, tk.Widget)), f"Expected widget to be of type ttk.Widget or tk.Widget, but got {type(widget)}"
+		assert strategy is None or isinstance(strategy, dict), f"Expected strategy to be of type dict, but got {type(strategy)}"
+		assert bindings is None or isinstance(bindings, list), f"Expected bindings to be of type list, but got {type(bindings)}"
+
 		self._widgets[name] = widget
 		if strategy:
 			self._widgetStrategy[name] = strategy
+
+		if bindings:
+			self._widgetBindings[name] = bindings
 
 		return self
 
@@ -164,6 +221,9 @@ class View(ttk.Frame):
 		:return: The widget with the given name.
 		:rtype: tk.Widget
 		"""
+		# Assertion tests
+		assert isinstance(name, str), f"Expected name to be of type str, but got {type(name)}"
+
 		widget = self._widgets.get(name)
 
 		if not widget:
@@ -185,6 +245,9 @@ class View(ttk.Frame):
 		:return: This instance of the `View` class.
 		:rtype: View
 		"""
+		# Assertion tests
+		assert isinstance(name, str), f"Expected name to be of type str, but got {type(name)}"
+
 		widget = self._widgets.get(name)
 
 		if not widget:
