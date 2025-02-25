@@ -1,5 +1,4 @@
-import os
-import sys
+import os, sys
 
 import tkinter as tk
 from tkinter import ttk
@@ -15,20 +14,6 @@ class EventHandlerController(Controller):
 	"""
 	This class handles all user events in the application; binding the widgets
 	to their respective events processes that are defined within this class.
-	"""
-
-	###########################
-	### PROTECTED VARIABLES ###
-	###########################
-
-	_serviceController: ServiceController = ServiceController.getInstance()
-	"""
-	Holds the instance of the `ServiceController` class which handles
-	the application's service logic. This controller is responsible for
-	bridging the gap between the UI and the application's logic.
-
-	Only a single instance of this controller is allowed to exist since its
-	design pattern is a singleton.
 	"""
 
 	def selectImage(self, previewWidget: ttk.Widget | tk.Widget = None) -> str:
@@ -48,6 +33,7 @@ class EventHandlerController(Controller):
 if __name__ == "__main__":
 	import os
 	name = os.path.basename(__file__)[:-3]
+
 	print(f"\n\n===== {name} START =====")
 	controller1 = EventHandlerController.getInstance()
 	controller1.test()

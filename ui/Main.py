@@ -139,9 +139,9 @@ class App(tk.Tk):
 		# Recalculate the dimensions of the application
 		self.__appDimensions = (
 			int(self.winfo_screenheight() * 0.75),
-			# 29 is the missing height of the image preview widget
+			# The addend is the missing height of the image preview widget
 			# so that the image preview will be a square shape.
-			int(self.winfo_screenheight() * 0.75) + 29
+			int(self.winfo_screenheight() * 0.75) + 93
 		)
 
 		# Centers the window
@@ -150,7 +150,7 @@ class App(tk.Tk):
 		winWidth = self.winfo_screenwidth()
 		winHeight = self.winfo_screenheight()
 		x = (winWidth // 2) - (appWidth // 2)
-		y = (winHeight // 2) - (appHeight // 2)
+		y = int(appHeight * 0.03125)
 
 		self.geometry(f"{appWidth}x{appHeight}+{x}+{y}")
 		self.resizable(False, False)

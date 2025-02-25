@@ -25,6 +25,12 @@ Defines the path to the application's resources/assets folder
 that contains the images, icons, and other resources needed.
 """
 
+RATING_CSV_SOURCE: str = "map/rating-map.csv"
+"""
+Defines where the rating map CSV file is located.
+"""
+
+
 #########################
 ### PRIVATE VARIABLES ###
 #########################

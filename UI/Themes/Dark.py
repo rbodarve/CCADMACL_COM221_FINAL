@@ -13,6 +13,14 @@ __COLORS: Dict[str, str] = {
 	"disabledfg": "#B2B3B4",
 }
 
+__INPUT_COLORS: Dict[str, str] = {
+	"fg": "#DEE2E6",
+	"bg": "#495057",
+	"disabledfg": "#B2B3B4",
+	"disabledbg": "#495057",
+	"readonlyfg": "gray",
+}
+
 #########################
 ### PRIVATE FUNCTIONS ###
 #########################
@@ -34,6 +42,10 @@ def __modifyStyle(style: ttk.Style) -> None:
 		"TButton",
 	]
 
+	txtInputComponents: List[str] = [
+		"TEntry"
+	]
+
 	for component in components:
 		additionalParams: Dict[str, any] = {}
 
@@ -49,6 +61,19 @@ def __modifyStyle(style: ttk.Style) -> None:
 			component,
 			foreground = __COLORS["fg"],
 			background = __COLORS["bg"],
+			**additionalParams
+		)
+
+	for component in txtInputComponents:
+		additionalParams: Dict[str, any] = {}
+
+		style.configure(
+			component,
+			foreground = __INPUT_COLORS["fg"],
+			background = __INPUT_COLORS["bg"],
+			disabledforeground = __INPUT_COLORS["disabledfg"],
+			disabledbackground = __INPUT_COLORS["disabledbg"],
+			readonlybackground = __INPUT_COLORS["readonlyfg"],
 			**additionalParams
 		)
 

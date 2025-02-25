@@ -50,6 +50,8 @@ def selectImage(previewWidget: ttk.Widget | tk.Widget = None) -> str:
 
 		if previewWidget:
 			showImage(previewWidget, file)
+	else:
+		file = __lastDir
 
 	# Return the selected file
 	return file
@@ -116,8 +118,8 @@ def showImage(widget: ttk.Label | tk.Label, image: str) -> str:
 		newImg.paste(img, (x, y))
 
 		photo = ImageTk.PhotoImage(image = newImg)
-		widget.configure(text = image, image = photo)
-		# widget.image = photo
+		widget.configure(image = photo)
+		widget.image = photo
 		widget.update()
 	
 	return image
